@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Demo2]
+(
+    col1 int NOT NULL
+)
+WITH
+(
+    DISTRIBUTION = HASH (col1),
+    CLUSTERED COLUMNSTORE INDEX
+)
+GO
