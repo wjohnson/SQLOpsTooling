@@ -1,7 +1,7 @@
 ﻿CREATE PROC [dbo].[Multiply] @colname [varchar](8000),@multiplier [int] AS
 BEGIN
     SET NOCOUNT ON;
-    
+    -- Hello Dee
     SELECT 
 	CASE WHEN @colname = 'c1' THEN [c1] ELSE Null END as selectedColumn,
 	@colname as columnname,
