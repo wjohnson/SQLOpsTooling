@@ -20,7 +20,7 @@
 |Build a Dacpac from SQL Files|Yes|No|
 |Build a Dacpac from Existing Db|Yes|Yes (with Extensions)|
 |Intellisense / Detect Errors|Yes|Yes (Intellisense)<br/>No (Detect Errors)|
-|Refactor a column|Yes (SQL DB)<br/>No (Synapse)|Yes!|
+|Refactor a column|Yes (SQL DB)<br/>No (Synapse)|No|
 |Git Integration|Yes|Yes|
 |Schema Compare|Yes|Yes (with Extensions)|
 
