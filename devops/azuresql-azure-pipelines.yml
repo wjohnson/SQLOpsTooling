@@ -9,16 +9,16 @@ trigger:
     - master
   paths:
     include:
-    - db-projects/synapse-sqlops/*
+    - db-projects/azuresql-sqlops/*
 
 pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/synapse-sqlops/*.sln'
+  solution: '**/azuresql-sqlops/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  projectName: 'synapse-sqlops'
+  projectName: 'azuresql-sqlops'
 
 stages:
 - stage: Build
