@@ -4,8 +4,15 @@
 * (SSDT) Create your SQL Database Project targeting a particular database (Azure SQL DB or Azure SQL Data Warehouse)
   * ![SSDT Project Target](./docs/img/ssdt_db_targets.jpg)
   * Azure Data Studio does not have multiple targets but does work with SQL Db and Synapse SQL Pools.
-  * You can import a schema from an existing database.
+  * You can import database objects from an existing database as well in SSDT!
 * Connect your Azure DevOps repo to your project.
+* Create an Azure Pipeline to build a Dacpac, generate reports, and deploy to your environments.
+  * Use the [Azure SQL database deployment](https://docs.microsoft.com/en-us/azure/devops/pipelines/targets/azure-sqldb?view=azure-devops&tabs=yaml) for Azure SQL.
+  * See the `devops/azuresql-azure-pipelines.yml` file for an example.
+  * Use the [Azure SQL DW Deployment task](https://marketplace.visualstudio.com/items?itemName=ms-sql-dw.SQLDWDeployment) for Azure Synapse.
+  * See the `devops/azuresql-azure-pipelines.yml` file for an example.
+
+## Git Best Practices for DevOps
 * Consider following a [release branch git workflow](https://docs.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops#use-release-branches)
   * This has the benefit of creating a stable release before merging into production.
 * When you need to release a [hotfix into Production](https://docs.microsoft.com/en-us/azure/devops/learn/devops-at-microsoft/release-flow#releasing-hotfixes)
@@ -13,7 +20,7 @@
   * Make your changes and create a pull request directly to master (rather than your release branch)
   * After completing the production changes, you may [Cherry Pick](https://docs.microsoft.com/en-us/azure/devops/repos/git/cherry-pick?view=azure-devops&tabs=visual-studio) the hotfix changes and merge them into your release branch (via another pull request)
 
-## Feature Comparison
+## Tooling Feature Comparison
 
 |Feature| SSDT | Azure Data Studio|
 |--|--|--|
