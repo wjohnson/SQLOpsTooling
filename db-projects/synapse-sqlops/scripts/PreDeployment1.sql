@@ -9,7 +9,7 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-IF object_id ('dbo.temp_simple_example','U') is not null DROP TABLE [dbo].[temp_simple_example];
+IF object_id ('[dbo].[temp_simple_example]','U') is not null DROP TABLE [dbo].[temp_simple_example];
 CREATE TABLE [dbo].[temp_simple_example](
 [c1] int,
 [c2] int
