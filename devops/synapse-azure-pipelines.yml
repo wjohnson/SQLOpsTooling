@@ -9,15 +9,16 @@ trigger:
     - master
   paths:
     include:
-    - wjapool/*
+    - db-projects/synapse-sqlops/*
 
 pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
+  solution: '**/synapse-sqlops/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  projectName: 'synapse-sqlops'
 
 stages:
 - stage: Build
@@ -46,15 +47,15 @@ stages:
     - task: SqlAzureDataWarehouseDacpacDeployment@1
       displayName: "What Will Deploy"
       inputs:
-        azureSubscription: '<YOUR SUBSCRIPTION>'
+        azureSubscription: '$(azureSubscription)'
         AuthenticationType: 'server'
-        ServerName: '<YOUR SERVER>'
-        DataWarehouse: '<YOUR WAREHOUSE NAME>'
-        SqlUsername: '<SQL USER>'
+        ServerName: '$(serverName)'
+        DataWarehouse: '$(dataWarehouseName)'
+        SqlUsername: '$(sqluser)'
         SqlPassword: '$(sqlpassword)'
         deployType: 'DacpacTask'
         DeploymentAction: 'Script'
-        DacpacFile: '$(build.artifactstagingdirectory)/wjapool/bin/Release/sqlops.dacpac'
+        DacpacFile: '$(build.artifactstagingdirectory)/$(projectName)/bin/Release/$(projectName).dacpac'
         AdditionalArguments: '/p:GenerateSmartDefaults=True'
         IpDetectionMethod: 'AutoDetect'
     
@@ -96,14 +97,14 @@ stages:
 
           - task: SqlAzureDataWarehouseDacpacDeployment@1
             inputs:
-              azureSubscription: '<YOUR SUBSCRIPTION>'
+              azureSubscription: '$(azureSubscription)'
               AuthenticationType: 'server'
-              ServerName: '<YOUR SERVER>'
-              DataWarehouse: '<YOUR WAREHOUSE NAME>'
-              SqlUsername: '<SQL USER>'
+              ServerName: '$(serverName)'
+              DataWarehouse: '$(dataWarehouseName)'
+              SqlUsername: '$(sqluser)'
               SqlPassword: '$(sqlpassword)'
               deployType: 'DacpacTask'
               DeploymentAction: 'Publish'
-              DacpacFile: '$(System.DefaultWorkingDirectory)\DBDeployment\wjapool\bin\Release\wjapool.dacpac'
+              DacpacFile: '$(System.DefaultWorkingDirectory)\DBDeployment\$(projectName)\bin\Release\$(projectName).dacpac'
               AdditionalArguments: '/p:GenerateSmartDefaults=True /p:BlockOnPossibleDataLoss=True /p:BlockWhenDriftDetected=True'
               IpDetectionMethod: 'AutoDetect'

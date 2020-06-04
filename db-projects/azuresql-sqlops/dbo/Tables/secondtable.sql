@@ -6,9 +6,3 @@
     col4 bigint NULL,
     [col5] bigint NULL
 )
-WITH
-(
-    DISTRIBUTION = HASH (col1),
-    CLUSTERED COLUMNSTORE INDEX
-)
-GO
